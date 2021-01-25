@@ -90,6 +90,8 @@ function actionBar(text,player) {
     if (debugMode) {console.log(`found actionBar-effect, text: ${text}, player: ${player}\n`)};
 }
 
+
+
 //EVENTS
 // Runs when the skript is loaded. Converts to 'on load:'
 function onLoad(func) {

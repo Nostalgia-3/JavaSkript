@@ -16,4 +16,4 @@ finish();
 It begins in the onLoad event, this gets compiled to `on load`. It runs the broadcast Effect and gets compiled into `broadcast "text"`. The finish function below compiles the code (and the term 'compile' isn't really a good thing but I am using it) to a file in a folder in the area: `C:/JavaSkript/out/output.sk`.
 
 ## Documentation
-The documentation is in the wiki area, you can also go through [here](github.com/LegotronForce/JavaSkript/Home].
+The documentation is in the wiki area, you can also go through [here](https://github.com/LegotronForce/JavaSkript/wiki/).

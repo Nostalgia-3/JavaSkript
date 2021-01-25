@@ -1,13 +1,19 @@
-# JS-TO-SK
+# JavaSkript
 
 A library that allows you to code Javascript into Skript (a minecraft plugin that allows you to code).
 
-## How to use JS-TO-SK
-The entire JS-TO-SK project is made inside of two files, the `compiler.js` and the `classes.js`. This will be the case for most of the time, but may go multi-file in the future. Anyways, to begin you need to require the `classes.js`, you can do this by simply typing in
-
+## How to use JavaSkript
+The JavaSkript library is made in one file, the `JavaSkript.js` file, and this file contains all of the code.
+An example of a JavaSkript project looks like this:
 ```javascript
-const {io,eventSystem} = require("./classes.js");
+const { onLoad, broadcast,finish } = require("../src/JavaSkript");
+onLoad(() => {
+    broadcast("Hello World");
+})
+
+finish();
 ```
+It begins in the onLoad event, this gets compiled to `on load`. It runs the broadcast Effect and gets compiled into `broadcast "text"`. The finish function below compiles the code (and the term 'compile' isn't really a good thing but I am using it) to a file in a folder in the area: `C:/JavaSkript/out/output.sk`.
 
-You see here that we get the `io` and `eventSystem` classes from the file, these are essential as they make it so you can use the `tell` and `broadcast` as well as the `on join` event and many others.
-
+## Documentation
+The documentation is in the wiki area, you can also go through [here](github.com/LegotronForce/JavaSkript/Home].

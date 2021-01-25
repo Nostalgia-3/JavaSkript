@@ -22,6 +22,11 @@ function broadcast(text) {
     addToData(`broadcast \"${text}\"`);
 }
 
+function set(variable,value) {
+    addToData(`set {${variable}} to ${value}`);
+}
+
+
 // COMMAND
 function command(commandWithoutSlash,description,usage,permission,permissionMessage,usableBy,code) {
     resetTabValue();
@@ -162,6 +167,7 @@ module.exports =
     registerEnchantment,
     isHolding,
     isNotHolding,
+    set,
     kill,
     op,
     deop,

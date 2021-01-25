@@ -1,0 +1,23 @@
+{
+  "name": "javaskript",
+  "version": "1.0.0",
+  "description": "Make Javascript into Skript",
+  "main": "test/main.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LegotronForce/JavaSkript.git"
+  },
+  "author": "LegotronForce",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/LegotronForce/JavaSkript/issues"
+  },
+  "homepage": "https://github.com/LegotronForce/JavaSkript#readme"
+}

@@ -1,5 +1,6 @@
-const {broadcast,onLoad,onPlayerJoin,branch,command,actionBar,registerRecipe,ban,unban,finish} = require("../src/JavaSkript");
+const {broadcast,onLoad,onPlayerJoin,branch,command,actionBar,debugModeOff,debugModeOn,registerRecipe,ban,unban,finish} = require("../src/JavaSkript");
 
+debugModeOff();
 
 onLoad(() => {
     broadcast("Hello, world!");

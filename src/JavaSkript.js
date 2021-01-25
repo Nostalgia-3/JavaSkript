@@ -90,7 +90,35 @@ function actionBar(text,player) {
     if (debugMode) {console.log(`found actionBar-effect, text: ${text}, player: ${player}\n`)};
 }
 
+function kick(player) {
+    addToData(`kick ${player}`);
+}
 
+// kills entity
+function kill(entity) {
+    addToData(`kill ${entity}`);
+}
+
+// op's player
+function op (player) {
+    addToData(`op ${player}`);
+}
+
+// deops player
+function deop (player) {
+    addToData(`deop ${player}`);
+}
+
+//CONDITIONS
+// Checks if the entity is holding something.
+function isHolding(entity,item,hand="hand") {
+    addToData(`${entity} is holding ${item} in ${hand}`);
+};
+
+// Checks if the entity is not holding something.
+function isNotHolding (entity,item,hand="hand") {
+    addToData(`${entity} isn't holding ${item} in ${hand}`);
+};
 
 //EVENTS
 // Runs when the skript is loaded. Converts to 'on load:'
@@ -121,4 +149,24 @@ function finish() {
 };
 
 
-module.exports = {broadcast,onLoad,onPlayerJoin,branch,command,actionBar,debugModeOn,debugModeOff,registerRecipe,ban,unban,finish};
+module.exports = 
+{
+    broadcast,
+    onLoad,
+    onPlayerJoin,
+    branch,
+    command,actionBar,
+    debugModeOn,
+    debugModeOff,
+    registerRecipe,
+    registerEnchantment,
+    isHolding,
+    isNotHolding,
+    kill,
+    op,
+    deop,
+    kick,
+    ban,
+    unban,
+    finish
+};

@@ -2,11 +2,13 @@ var fs = require("fs");
 var data = "";
 var currentTabValue = "";
 
-// Commands
+// Events
 
 function broadcast(text) {
     data = data + ("\n" + currentTabValue + "broadcast \"" + text + "\"");
 }
+
+
 
 // EVENTS
 function onLoad(func) {
@@ -27,8 +29,8 @@ function onPlayerJoin (func) {
 
 // FINISH
 function finish() {
-    fs.writeFileSync("C:/JavaSkript/out/output.sk", data);
-    console.log("Finished update of \"output.sk\". DO NOT MAKE MORE LINES OF CODE AFTER THIS AS IT DOES NOT SAVE");
+    fs.writeFileSync("C:/js-to-sk/test/out/output.sk", data);
+    console.log("Finished update of \"output.sk\". DO NOT MAKE MORE LINES OF CODE AFTER THIS");
 };
 
 module.exports = {broadcast,onLoad,onPlayerJoin,finish};

@@ -6,28 +6,36 @@ let debugMode = false;
 // OTHER
 function debugModeOn() {debugMode = true};
 function debugModeOff() {debugMode = false};
-
+function addToData(thing) {
+    data = data + "\n" + currentTabValue + thing;
+}
+function addToTab() {
+    currentTabValue = currentTabValue + "    ";
+}
+function resetTabValue() {
+    currentTabValue = "";
+}
 
 // EFFECTS
 function broadcast(text) {
-    data = data + ("\n" + currentTabValue + "broadcast \"" + text + "\"");
+    addToData(`broadcast \"${text}\"`);
 }
 
 // COMMAND
 function command(commandWithoutSlash,description,usage,permission,permissionMessage,usableBy,code) {
-    data = data + "\n" + currentTabValue + `command /${commandWithoutSlash}:`
-    currentTabValue = currentTabValue + "    ";
-    data = data + "\n" + currentTabValue + `description: ${description}`;
-    data = data + "\n" + currentTabValue + `usage: ${usage}`;
-    data = data + "\n" + currentTabValue + `permission: ${permission}`;
-    data = data + "\n" + currentTabValue + `permission message: ${permissionMessage}`;
-    data = data + "\n" + currentTabValue + `executable by: ${usableBy}`;
-    data = data + "\n" + currentTabValue + `trigger:`;
-
-    currentTabValue = currentTabValue + "    ";
+    resetTabValue();
+    addToData(`command /${commandWithoutSlash}:`); // Adds 'command /%command_name%:'
+    addToTab();
+    addToData(`description: ${description}`);
+    addToData(`usage: ${usage}`);
+    addToData(`permission: ${permission}`);
+    addToData(`permission message: ${permissionMessage}`);
+    addToData(`executable by: ${usableBy}`);
+    addToData(`trigger:`);
+    addToTab();
     code();
-    currentTabValue = "";
-    data = data + "\n";
+    resetTabValue();
+    addToData("\n");
 }
 
 
@@ -43,8 +51,8 @@ function ban(player,reason=null,time=null) {
         banMessage = banMessage + ` for ${time}`;
     }
     
-    console.log(`ban-effect found: banMessage:${banMessage}, currentTabValue:${currentTabValue.length}`);
-    data = data + "\n" + currentTabValue + banMessage;
+    if (debugMode) {console.log(`ban-effect found: banMessage:${banMessage}, currentTabValue:${currentTabValue.length}`);};
+    addToData(banMessage);
 };
 
 
@@ -55,36 +63,40 @@ function branch(num,func) {
 }
 
 function unban(player) {
-    data = data + "\n" + currentTabValue + `unban ${player}`
+    addToData(`unban ${player}`);
 };
 
 // EXPRESSIONS
 function registerRecipe(type,output,items) {
     // @param type, it can be one of 3 things: shaped , shapeless , or furnace 
-    data = data + "\n" + currentTabValue + `register new custom ${type} recipe for ${output} using ${items[0]} ${items[1]} ${items[2]} ${items[3]} ${items[4]} ${items[5]} ${items[6]} ${items[7]} ${items[8]}`
+    addToData(`register new custom ${type} recipe for ${output} using ${items[0]} ${items[1]} ${items[2]} ${items[3]} ${items[4]} ${items[5]} ${items[6]} ${items[7]} ${items[8]}`);
+}
 
+function registerEnchantment(id) {
+    addToData(`register a new custom enchantment with id ${id}`);
 }
 
 function actionBar(text,player) {
-    data = data + "\n" + currentTabValue + `send action bar with text \"${text}\" to ${player}`
+    addToData(`send action bar with text \"${text}\" to ${player}`);
 }
+
 
 
 
 
 // EVENTS
 function onLoad(func) {
-    data = data + "\non load:"
-    currentTabValue = "    ";
+    addToData("on load:");
+    addToTab();
     func();
-    currentTabValue = "";
+    resetTabValue();
 };
 
 function onPlayerJoin (func) {
-    data = data + "\non player join:"
-    currentTabValue = "    ";
+    addToData("on player join:");
+    addToTab();
     func();
-    currentTabValue = "";
+    resetTabValue();
 }
 
 

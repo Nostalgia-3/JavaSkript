@@ -125,7 +125,9 @@ function isNotHolding (entity,item,hand="hand") {
     addToData(`${entity} isn't holding ${item} in ${hand}`);
 };
 
-//EVENTS
+// ------------------------
+// ---------EVENTS---------
+// ------------------------
 // Runs when the skript is loaded. Converts to 'on load:'
 function onLoad(func) {
     addToData("on load:");
@@ -144,8 +146,6 @@ function onPlayerJoin (func) {
     if (debugMode) {console.log(`found onPlayerJoin-Event, func: ${func}`)};
 }
 
-
-
 // FINISH
 function finish() {
     fs.writeFileSync("C:/JavaSkript/out/output.sk", data); // Writes data to the file
@@ -153,7 +153,7 @@ function finish() {
     console.log("Finished update of \"output.sk\". the value of data is:\n\n" + data); // Shows you the file data.
 };
 
-
+// module.exports
 module.exports = 
 {
     broadcast,

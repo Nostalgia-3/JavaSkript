@@ -1,8 +1,6 @@
-const {broadcast,onLoad,finish} = require("../src/JavaSkript-new-features");
+const {broadcast,onLoad} = require("../src/JavaSkript");
 
 
 onLoad(() => {
     broadcast("Hello, world!");
 });
-
-finish();

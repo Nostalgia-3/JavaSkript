@@ -1,4 +1,4 @@
-const {broadcast,onLoad,onPlayerJoin,branch,command,actionBar,debugModeOff,debugModeOn,registerRecipe,ban,unban,finish} = require("../src/JavaSkript");
+const {broadcast,onLoad,onPlayerJoin,branch,command,actionBar,debugModeOff,debugModeOn,registerRecipe,ban,unban} = require("../src/JavaSkript");
 
 debugModeOff();
 
@@ -8,6 +8,5 @@ onLoad(() => {
 
 command("tes","/tes","/tes","gakerstudios.javaskript.test.tes","You don't have permissions to use this command.","players",() => {
     actionBar("This is an actionBar","%player%");
+    actionBar("SECOND!","%player%");
 });
-
-finish();

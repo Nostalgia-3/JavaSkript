@@ -17,13 +17,21 @@ function resetTabValue() {
     currentTabValue = "";
 }
 
+function addDataToFile() {
+    fs.writeFileSync("C:/JavaSkript/out/output.sk", data); // Writes data to the file
+    console.log("-----------------------------");
+    console.log("Set output.sk to " + data); // Shows you the file data.
+};
+
 // EFFECTS
 function broadcast(text) {
     addToData(`broadcast \"${text}\"`);
+    addDataToFile();
 }
 
 function set(variable,value) {
     addToData(`set {${variable}} to ${value}`);
+    addDataToFile();
 }
 
 
@@ -44,6 +52,7 @@ function command(commandWithoutSlash,description,usage,permission,permissionMess
     addToData("\n");
 
     if(debugMode) {console.log(`found command.\n`)};
+    addDataToFile();
 }
 
 
@@ -75,54 +84,64 @@ function branch(num,func) {
 function unban(player) {
     addToData(`unban ${player}`);
     if (debugMode) {console.log(`Unban-effect, player: ${player}.\n`)};
+    addDataToFile();
 };
 
 // @param type, it can be one of 3 things: shaped , shapeless , or furnace. From TuSKe
 function registerRecipe(type,output,items) {
     addToData(`register new custom ${type} recipe for ${output} using ${items[0]} ${items[1]} ${items[2]} ${items[3]} ${items[4]} ${items[5]} ${items[6]} ${items[7]} ${items[8]}`);
     if (debugMode) {console.log(`found registerRecipe-effect, item array: ${items}, type: ${type}, output: ${output}\n`)}; 
+    addDataToFile();
 }
 
 // The registerEnchantment is from TuSKe
 function registerEnchantment(id) {
     addToData(`register a new custom enchantment with id ${id}`);
     if (debugMode) {console.log(`found registerEnchantment-effect, id: ${id}\n`)}; 
+    addDataToFile();
 }
 
 // Makes an actionBar to the player with the text
 function actionBar(text,player) {
     addToData(`send action bar with text \"${text}\" to ${player}`);
     if (debugMode) {console.log(`found actionBar-effect, text: ${text}, player: ${player}\n`)};
+    addDataToFile();
 }
 
 function kick(player) {
     addToData(`kick ${player}`);
+    addDataToFile();
 }
 
 // kills entity
 function kill(entity) {
     addToData(`kill ${entity}`);
+    addDataToFile();
 }
 
 // op's player
 function op (player) {
     addToData(`op ${player}`);
+    addDataToFile();
 }
 
 // deops player
 function deop (player) {
     addToData(`deop ${player}`);
+    addDataToFile();
 }
 
 //CONDITIONS
 // Checks if the entity is holding something.
 function isHolding(entity,item,hand="hand") {
     addToData(`${entity} is holding ${item} in ${hand}`);
+    addDataToFile();
 };
 
 // Checks if the entity is not holding something.
 function isNotHolding (entity,item,hand="hand") {
     addToData(`${entity} isn't holding ${item} in ${hand}`);
+    addDataToFile();
 };
 
 // ------------------------
@@ -134,6 +153,7 @@ function onLoad(func) {
     addToTab();
     func();
     resetTabValue();
+    addDataToFile();
     if (debugMode) {console.log(`found onLoad-Event, func: ${func}\n`)};
 };
 
@@ -143,15 +163,9 @@ function onPlayerJoin (func) {
     addToTab();
     func();
     resetTabValue();
+    addDataToFile();
     if (debugMode) {console.log(`found onPlayerJoin-Event, func: ${func}`)};
 }
-
-// FINISH
-function finish() {
-    fs.writeFileSync("C:/JavaSkript/out/output.sk", data); // Writes data to the file
-    console.log("-----------------------------");
-    console.log("Finished update of \"output.sk\". the value of data is:\n\n" + data); // Shows you the file data.
-};
 
 // module.exports
 module.exports = 
@@ -173,6 +187,5 @@ module.exports =
     deop,
     kick,
     ban,
-    unban,
-    finish
+    unban
 };

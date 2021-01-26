@@ -1,4 +1,4 @@
-const {broadcast,onLoad,finish} = require("../src/JavaSkript");
+const {broadcast,onLoad,finish} = require("../src/JavaSkript-new-features");
 
 
 onLoad(() => {

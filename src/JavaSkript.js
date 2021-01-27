@@ -34,6 +34,9 @@ function set(variable,value) {
     addDataToFile();
 }
 
+function cancelEvent() {
+    addToData(`cancel event`);
+}
 
 // COMMAND
 function command(commandWithoutSlash,description,usage,permission,permissionMessage,usableBy,code) {
@@ -132,6 +135,7 @@ function deop (player) {
 }
 
 //CONDITIONS
+
 // Checks if the entity is holding something.
 function isHolding(entity,item,hand="hand") {
     addToData(`${entity} is holding ${item} in ${hand}`);
@@ -144,6 +148,7 @@ function isNotHolding (entity,item,hand="hand") {
     addDataToFile();
 };
 
+
 // ------------------------
 // ---------EVENTS---------
 // ------------------------
@@ -152,7 +157,6 @@ function onLoad(func) {
     addToData("on load:");
     addToTab();
     func();
-    resetTabValue();
     addDataToFile();
     if (debugMode) {console.log(`found onLoad-Event, func: ${func}\n`)};
 };
@@ -162,7 +166,6 @@ function onPlayerJoin (func) {
     addToData("on player join:");
     addToTab();
     func();
-    resetTabValue();
     addDataToFile();
     if (debugMode) {console.log(`found onPlayerJoin-Event, func: ${func}`)};
 }
@@ -170,11 +173,15 @@ function onPlayerJoin (func) {
 // module.exports
 module.exports = 
 {
-    broadcast,
+    // All of the Events
     onLoad,
     onPlayerJoin,
+    // All of the Effects
+    broadcast,
+    cancelEvent,
     branch,
-    command,actionBar,
+    command,
+    actionBar,
     debugModeOn,
     debugModeOff,
     registerRecipe,

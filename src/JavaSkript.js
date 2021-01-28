@@ -13,6 +13,11 @@ function addToData(thing) {
 function addToTab() {
     currentTabValue = currentTabValue + "    ";
 }
+
+function takeFromTab() {
+    currentTabValue = currentTabValue - "    ";
+}
+
 function resetTabValue() {
     currentTabValue = "";
 }
@@ -159,6 +164,7 @@ function onLoad(func) {
     func();
     addDataToFile();
     if (debugMode) {console.log(`found onLoad-Event, func: ${func}\n`)};
+    takeFromTab();
 };
 
 // Runs when a player joins
@@ -168,6 +174,7 @@ function onPlayerJoin (func) {
     func();
     addDataToFile();
     if (debugMode) {console.log(`found onPlayerJoin-Event, func: ${func}`)};
+    takeFromTab();
 }
 
 // module.exports

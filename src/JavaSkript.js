@@ -18,7 +18,6 @@ function addDataToFile() { fs.writeFileSync("C:/JavaSkript/out/output.sk", data)
 function broadcast(text) { addToData(`broadcast \"${text}\"`); addDataToFile(); }
 function set(variable,value) { addToData(`set {${variable}} to ${value}`); addDataToFile(); }
 function cancelEvent() { addToData(`cancel event`); addDataToFile(); }
-// Command
 function command(commandWithoutSlash,description,usage,permission,permissionMessage,usableBy,code) { resetTabValue(); addToData(`command /${commandWithoutSlash}:`); addToTab(); addToData(`description: ${description}`); addToData(`usage: ${usage}`); addToData(`permission: ${permission}`); addToData(`permission message: ${permissionMessage}`); addToData(`executable by: ${usableBy}`); addToData(`trigger:`); addToTab(); code(); resetTabValue(); addToData("\n"); if(debugMode) {console.log(`found command.\n`)}; addDataToFile(); };
 // This effect bans the player with a non-required reason and time.
 function ban(player,reason=null,time=null) { let banMessage = `ban ${player} `; if (reason !=null) { banMessage = banMessage + `due to "${reason}"`; } if (time != null) { banMessage = banMessage + ` for ${time}`; } if (debugMode) {console.log(`ban-effect found: banMessage:${banMessage}, currentTabValue:${currentTabValue.length}\n`);}; addToData(banMessage); };
@@ -39,7 +38,16 @@ function kill(entity) { addToData(`kill ${entity}`); addDataToFile(); }
 function op (player) { addToData(`op ${player}`); addDataToFile(); }
 // deops player
 function deop (player) { addToData(`deop ${player}`); addDataToFile(); }
-
+// "Makes a player see a block as another type of block (e.g. client side). Any update from the server will change it back." Gotten from Skripthub. Link: https://skripthub.net/docs/?id=3883
+function clientBlock(player,blocks,blocktype) { addToData(`make ${player} see ${blocks} as ${blocktype}`); addDataToFile(); }
+// Skip execution of `numberofskips` lines
+function escape(numberofskips) {addToData(`escape ${numberofskips} lines`); addDataToFile();}
+// Clears all recipes of everyone
+function clearRecipes() { addToData(`wipe server crafting recipes`); addDataToFile(); }
+// "Clears all recipes for the given items." Gotten from Skripthub
+function clearItemRecipes(item) { addToData(`wipe crafting recipes for ${item}`); addDataToFile(); }
+// "Makes a player see lines of a sign as the given texts (e.g. client side)." Gotten from Skripthub
+function clientSign(player,blocks,stringList) { addToData(`make ${player} see lines of ${blocks} as ${stringList[0]}, ${stringList[1]}, ${stringList[2]} and ${stringList[3]}`); addDataToFile(); }
 
 //////////////
 //CONDITIONS//
@@ -59,6 +67,8 @@ function isNotHolding (entity,item,hand="hand") { addToData(`${entity} isn't hol
 function onLoad(func) { addToData("on load:"); addToTab(); func(); addDataToFile(); if (debugMode) {console.log(`found onLoad-Event, func: ${func}\n`)}; takeFromTab(); };
 // Runs when a player joins
 function onPlayerJoin (func) { addToData("on player join:"); addToTab(); func(); addDataToFile(); if (debugMode) {console.log(`found onPlayerJoin-Event, func: ${func}`)}; takeFromTab(); }
+// Runs when someone enchants
+function onEnchant(func) { addToData(`on enchant:`); addToTab(); func(); addDataToFile(); }
 
 
 // module.exports
@@ -66,17 +76,23 @@ module.exports =
 {
     onLoad,
     onPlayerJoin,
+    onEnchant,
     broadcast,
     cancelEvent,
     branch,
     command,
+    clearRecipes,
+    clearItemRecipes,
     actionBar,
     debugModeOn,
     debugModeOff,
     registerRecipe,
     registerEnchantment,
+    clientBlock,
+    clientSign,
     isHolding,
     isNotHolding,
+    escape,
     set,
     kill,
     op,

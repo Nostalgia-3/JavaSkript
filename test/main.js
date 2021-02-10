@@ -2,6 +2,7 @@ const {broadcast,onLoad,onPlayerJoin,branch,command,actionBar,debugModeOff,debug
 
 debugModeOff();
 
+
 onLoad(() => {
     broadcast("Hello, world!");
     onLoad(()=>{

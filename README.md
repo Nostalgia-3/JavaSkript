@@ -1,3 +1,6 @@
+# DISCLAMER
+This project is has semi-stopped and commits are slowing down. It has **NOT** ended, I am just taking a break. 
+
 # JavaSkript
 
 A library that allows you to code Javascript into Skript (a minecraft plugin that allows you to code).

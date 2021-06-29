@@ -4,21 +4,19 @@ var currentTabValue = "";
 let debugMode = false;
 
 // OTHER
-function debugModeOn() {debugMode = true}; // Sets debugMode on, this is going to be partly deprecated
-function debugModeOff() {debugMode = false}; // Sets debugMode off, this is going to be partly deprecated.
 function addToData(thing) { data = data + "\n" + currentTabValue + thing; }; // Adds @arg thing to the data variable
 function addToTab() { currentTabValue = currentTabValue + "    "; }; // Adds a tab from the `currentTabValue`.
 function takeFromTab() { currentTabValue = currentTabValue - "    "; }; // Takes a tab from the `currentTabValue`.
-function resetTabValue() { currentTabValue = ""; } // This is going to be deprecated in 1.1.0
-function addDataToFile() { fs.writeFileSync("C:/JavaSkript/out/output.sk", data); }; // This is going to be deprecated in 1.1.0
+
+function addDataToFile() { fs.writeFileSync("out/output.sk", data); };
 
 /////////////
 // EFFECTS //
 /////////////
-function broadcast(text) { addToData(`broadcast \"${text}\"`); addDataToFile(); };
+// function broadcast(text) { addToData(`broadcast \"${text}\"`); addDataToFile(); };
 function set(variable,value) { addToData(`set {${variable}} to ${value}`); addDataToFile(); };
 function cancelEvent() { addToData(`cancel event`); addDataToFile(); };
-function command(commandWithoutSlash,description,usage,permission,permissionMessage,usableBy,code) { resetTabValue(); addToData(`command /${commandWithoutSlash}:`); addToTab(); addToData(`description: ${description}`); addToData(`usage: ${usage}`); addToData(`permission: ${permission}`); addToData(`permission message: ${permissionMessage}`); addToData(`executable by: ${usableBy}`); addToData(`trigger:`); addToTab(); code(); resetTabValue(); addToData("\n"); if(debugMode) {console.log(`found command.\n`)}; addDataToFile(); };
+function command(commandWithoutSlash,description,usage,permission,permissionMessage,usableBy,code) { takeFromTab(); addToData(`command /${commandWithoutSlash}:`); addToTab(); addToData(`description: ${description}`); addToData(`usage: ${usage}`); addToData(`permission: ${permission}`); addToData(`permission message: ${permissionMessage}`); addToData(`executable by: ${usableBy}`); addToData(`trigger:`); addToTab(); code(); takeFromTab(); addToData("\n"); if(debugMode) {console.log(`found command.\n`)}; addDataToFile(); };
 // This effect bans the player with a non-required reason and time.
 function ban(player,reason=null,time=null) { let banMessage = `ban ${player} `; if (reason !=null) { banMessage = banMessage + `due to "${reason}"`; } if (time != null) { banMessage = banMessage + ` for ${time}`; } if (debugMode) {console.log(`ban-effect found: banMessage:${banMessage}, currentTabValue:${currentTabValue.length}\n`);}; addToData(banMessage); };
 // Runs func num times

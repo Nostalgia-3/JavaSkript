@@ -1,5 +1,5 @@
 # DISCLAMER
-This project is has semi-stopped and commits are slowing down. It has **NOT** ended, I am just taking a break. 
+~~This project is has semi-stopped and commits are slowing down. It has **NOT** ended, I am just taking a break.~~ This project has ended. I have lost all of my effor on this project, and althought it was a cool idea, I a lot less skill. Hey, maybe I'll make a refactored, new and improved thing.
 
 # JavaSkript
 
